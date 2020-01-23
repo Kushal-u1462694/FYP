@@ -3,11 +3,22 @@
 @section('content')
 
 <h3> All Patients</h3>
+<table>
+<tr>
+<th>First Name:</th>
+<th>Last Name:</th>
+<th>Edit</th>
+<th>Delete</th>
+</tr>
+<tr>
+    @foreach ($patients as $patient)
+    <td> {{ $patient->fname}}</td>
+    <td>{{ $patient->lname}}  Carer : {{$patient->Carer->lname}} </td>
+<td><a href = "{{route('patient.edit',$patient->id)}}" class = "btn btn-warning">Edit</a></td>
+<td>  <a class="btn btn-outline-danger" href="{{ route('patient.delete', $patient->id ) }}">Delete Patient</a>
+</td>
 
-
-@foreach ($patients as $patient)
-<p> {{ $patient->fname}}  {{ $patient->lname}}     Carer : {{$patient->Carer->lname}}</p>
-
+</tr>
 @endforeach
-
+</table>
 @endsection

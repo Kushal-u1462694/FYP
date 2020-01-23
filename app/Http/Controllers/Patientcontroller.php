@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Illuminate\Http\Request;
 
+
 class Patientcontroller extends Controller
 {
     /**
@@ -52,7 +53,6 @@ class Patientcontroller extends Controller
         return view('patients.newPatient');
 
     }
-
     /**
      * Display the specified resource.
      *
@@ -72,9 +72,11 @@ class Patientcontroller extends Controller
      */
     public function edit($id)
     {
-        //
-    }
 
+            $patient = Patient::find($id);
+        return view('patients.editPatient', compact ('patient'));
+
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -83,8 +85,32 @@ class Patientcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+
+ {
+        // Update Post
+
+        $patient = Patient::find($id);
+        $patient->update([
+            "fname" => $request->get('fname'),
+           "lname" => $request->get('lname'),
+            "email" => $request->get('email'),
+            "address" => $request->get('address'),
+            "postcode" => $request->get('postcode'),
+           "dob" => $request->get('dob'),
+            "carer_id" => $request->get('carer_id'),
+
+        ]);
+        // $patient->fname = $request->get('fname');
+        // $patient->lname = $request->get('lname');
+        // $patient->email = $request->get('email');
+        // $patient->address = $request->get('address');
+        // $patient->postcode = $request->get('postcode');
+        // $patient->dob = $request->get('dob');
+        // $patient->carer_id = $request->get('carer_id');
+        // $patient->save();
+        $patients  = Patient::all();
+    //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
+        return  redirect()->back()->with('info', "patient updated");
     }
 
     /**
@@ -95,6 +121,10 @@ class Patientcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $patient = Patient::find($id);
+        $patient->delete();
+        $patients  = Patient::all();
+        return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
     }
 }
