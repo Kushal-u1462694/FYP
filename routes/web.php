@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,10 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 //carers routes
 
 Route::get('/carers/all', 'CarerController@index')->name('carers.all');
+Route::get('/carers/new','CarerController@create')->name('carers.new');
+Route::post('/carers/new','CarerController@store')->name('carers.new');
 
 //patients routes
 
-Route::get('/patients/all', 'patientController@index')->name('patients.all');
-Route::get('/patients/new', 'patientController@create')->name('patients.new');
-Route::post('/patients/new', 'patientController@store')->name('patients.new');
-
+Route::get('/patients/all','PatientController@index')->name('patients.all');
+Route::get('/patients/new','PatientController@create')->name('patients.new');
+Route::post('/patients/new','PatientController@store')->name('patients.new');
+Route::get('/patients/edit/{id}','PatientController@edit')->name('patient.edit');
+Route::post('/patients/edit/{id}','PatientController@update')->name('patient.edit');
+Route::get('/patients/delete/{id}','PatientController@destroy')->name('patient.delete');
