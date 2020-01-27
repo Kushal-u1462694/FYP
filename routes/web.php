@@ -23,12 +23,39 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/carers/all', 'CarerController@index')->name('carers.all');
 Route::get('/carers/new','CarerController@create')->name('carers.new');
 Route::post('/carers/new','CarerController@store')->name('carers.new');
-
+Route::get('/carers/edit/{id}','CarerController@edit')->name('carers.edit');
+Route::post('/carers/edit/{id}','CarerController@update')->name('carers.edit');
+Route::get('/carers/delete/{id}','CarerController@destroy')->name('carers.delete');
 //patients routes
 
-Route::get('/patients/all','PatientController@index')->name('patients.all');
-Route::get('/patients/new','PatientController@create')->name('patients.new');
-Route::post('/patients/new','PatientController@store')->name('patients.new');
-Route::get('/patients/edit/{id}','PatientController@edit')->name('patient.edit');
-Route::post('/patients/edit/{id}','PatientController@update')->name('patient.edit');
-Route::get('/patients/delete/{id}','PatientController@destroy')->name('patient.delete');
+Route::get('/patients/all','Patientcontroller@index')->name('patients.all');
+Route::get('/patients/new','Patientcontroller@create')->name('patients.new');
+Route::post('/patients/new','Patientcontroller@store')->name('patients.new');
+Route::get('/patients/edit/{id}','Patientcontroller@edit')->name('patient.edit');
+Route::post('/patients/edit/{id}','Patientcontroller@update')->name('patient.edit');
+Route::get('/patients/delete/{id}','Patientcontroller@destroy')->name('patients.delete');
+
+// Doctor routes
+Route::get('/doctors/all','DoctorController@index')->name('doctors.all');
+Route::get('/doctors/new','DoctorController@create')->name('doctors.new');
+Route::post('/doctors/new','DoctorController@store')->name('doctors.new');
+Route::get('/doctors/edit/{id}','DoctorController@edit')->name('doctor.edit');
+Route::post('/doctors/edit/{id}','DoctorController@update')->name('doctor.edit');
+Route::get('/doctors/delete/{id}','DoctorController@destroy')->name('doctor.delete');
+
+// Surgery routes
+Route::get('/surgeries/all','SurgeryController@index')->name('surgeries.all');
+Route::get('/surgeries/new','SurgeryController@create')->name('surgeries.new');
+Route::post('/surgeries/new','SurgeryController@store')->name('surgeries.new');
+Route::get('/surgeries/edit/{id}','SurgeryController@edit')->name('surgeries.edit');
+Route::post('/surgeries/edit/{id}','SurgeryController@update')->name('surgeries.edit');
+Route::get('/surgeries/delete/{id}','SurgeryController@destroy')->name('surgeries.delete');
+
+// Medicine routes
+Route::get('/medicines/all','MedicineController@index')->name('medicines.all');
+Route::get('/medicines/new','MedicineController@create')->name('medicines.new');
+Route::post('/medicines/new','MedicineController@store')->name('medicines.new');
+Route::get('/medicines/edit/{id}','MedicineController@edit')->name('medicine.edit');
+Route::post('/medicines/edit/{id}','MedicineController@update')->name('medicine.edit');
+Route::get('/medicines/delete/{id}','MedicineController@destroy')->name('medicine.delete');
+

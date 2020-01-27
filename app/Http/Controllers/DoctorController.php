@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Carer;
+use App\Doctor;
 use Illuminate\Http\Request;
 
-class CarerController extends Controller
+
+class DoctorController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
+        $doctors  = Doctor::all();
 
-        $carers= Carer::all();
-
-        return view('carers.index')->with(['carers'=>$carers]);
-
+        return view('doctors.index')->with(['doctors' => $doctors]);
     }
 
-/**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('carers.newCarer');
+        return view('doctors.newDoctor');
     }
 
     /**
@@ -42,17 +40,17 @@ class CarerController extends Controller
     {
 
         // dd($request);
-        Carer::create([
+        Doctor::create([
             'fname' => $request->input('fname'),
             'lname' => $request->input('lname'),
             'dob' => $request->input('dob'),
+            'surgery_id' => $request->input('surgery_id'),
         ]);
 
-        return view('carers.newCarer');
+        // return view('doctors.newDoctor');
+        return  redirect()->back()->with('info', "Doctor Succesfully Added");
 
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -72,13 +70,10 @@ class CarerController extends Controller
      */
     public function edit($id)
     {
-        //
-
-        $carer = Carer:: find($id);
-        return view('carer.editCarer', compact ('carer'));
+        $doctor = Doctor::find($id);
+        return view('doctors.editDoctor', compact ('doctor'));
 
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,19 +82,19 @@ class CarerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // update carer
 
-        $carer = Carer::find($id);
-        $carer->update([
-            "fname" => $request->get('fname'),
-           "lname" => $request->get('lname'),
-           "dob" => $request->get('dob'),
-        ]);
+ {
+    $doctor = Doctor::find($id);
+    $doctor->update([
+        "fname" => $request->get('fname'),
+       "lname" => $request->get('lname'),
+       "dob" => $request->get('dob'),
+        "surgery_id" => $request->get('surgery_id'),
 
-        $carers  = Carer::all();
-            return  redirect()->back()->with('info', "Carer updated");
-
+    ]);
+    $doctors  = Doctor::all();
+    //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
+        return  redirect()->back()->with('info', "Doctor updated");
     }
 
     /**
@@ -110,12 +105,10 @@ class CarerController extends Controller
      */
     public function destroy($id)
     {
-        // carer deleted
-
-        $carer = Carer::find($id);
-        $carer->delete();
-        $carers  = Carer::all();
-        return  redirect()->back()->with('info', "Carer Deleted");
-
+        $doctor = Doctor::find($id);
+        $doctor->delete();
+        $doctors  = Doctor::all();
+        // return view('doctors.index')->with(['success'=>'Data Updated','patients'=>$patients]);
+        return  redirect()->back()->with('info', "Doctor Deleted");
     }
 }

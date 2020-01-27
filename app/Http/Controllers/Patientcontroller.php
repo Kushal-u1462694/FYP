@@ -87,7 +87,7 @@ class Patientcontroller extends Controller
     public function update(Request $request, $id)
 
  {
-        // Update Post
+        // Update Patient
 
         $patient = Patient::find($id);
         $patient->update([
@@ -125,6 +125,7 @@ class Patientcontroller extends Controller
         $patient = Patient::find($id);
         $patient->delete();
         $patients  = Patient::all();
-        return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
+        // return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
+        return  redirect()->back()->with('info', "Patient Deleted");
     }
 }

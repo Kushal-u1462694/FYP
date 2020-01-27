@@ -15,9 +15,9 @@ class CreateSurgeriesTable extends Migration
     {
         Schema::create('surgeries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('address');
-            $table->string('postcode');
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('postcode')->nullable();
             $table->timestamps();
         });
     }
