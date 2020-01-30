@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Doctor;
 
 class Surgery extends Model
 {
@@ -10,7 +11,7 @@ class Surgery extends Model
 
 public function doctors()
 {
-    return $this->hasMany('App\Doctors');
+    return $this->hasMany(Doctor::class);
 }
 
 }

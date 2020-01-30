@@ -13,9 +13,9 @@
 <tr>
     @foreach ($patients as $patient)
     <td> {{ $patient->fname}}</td>
-    <td>{{ $patient->lname}}  Carer : {{$patient->Carer->lname}} </td>
+    <td>{{ $patient->lname}} </td>
 <td><a href = "{{route('patient.edit',$patient->id)}}" class = "btn btn-warning">Edit</a></td>
-<td>  <a class="btn btn-outline-danger" href="{{ route('patient.delete', $patient->id ) }}">Delete Patient</a>
+<td>  <a class="btn btn-outline-danger" href="{{ route('patients.delete', $patient->id ) }}">Delete Patient</a>
 </td>
 
 </tr>

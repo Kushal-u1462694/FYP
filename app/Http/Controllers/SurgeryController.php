@@ -2,34 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Carer;
+use App\Surgery;
 use Illuminate\Http\Request;
 
-class CarerController extends Controller
+
+class SurgeryController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
+        $surgeries  = Surgery::all();
 
-        $carers= Carer::all();
-
-        return view('carers.index')->with(['carers'=>$carers]);
-
+        return view('surgeries.index')->with(['surgeries' => $surgeries]);
     }
 
-/**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('carers.newCarer');
+        return view('surgeries.newSurgery');
     }
 
     /**
@@ -42,17 +40,16 @@ class CarerController extends Controller
     {
 
         // dd($request);
-        Carer::create([
-            'fname' => $request->input('fname'),
-            'lname' => $request->input('lname'),
-            'dob' => $request->input('dob'),
+        Surgery::create([
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'postcode' => $request->input('postcode'),
         ]);
 
-        return view('carers.newCarer');
+        // return view('doctors.newDoctor');
+        return  redirect()->back()->with('info', "Surgery Succesfully Added");
 
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -72,13 +69,10 @@ class CarerController extends Controller
      */
     public function edit($id)
     {
-        //
-
-        $carer = Carer:: find($id);
-        return view('carers.editCarer', compact ('carer'));
+        $surgery = Surgery::find($id);
+        return view('surgeries.editSurgery', compact ('surgery'));
 
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -87,19 +81,18 @@ class CarerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // update carer
 
-        $carer = Carer::find($id);
-        $carer->update([
-            "fname" => $request->get('fname'),
-           "lname" => $request->get('lname'),
-           "dob" => $request->get('dob'),
-        ]);
+ {
+    $surgery = Surgery::find($id);
+    $surgery->update([
+        "name" => $request->get('name'),
+       "address" => $request->get('address'),
+       "postcode" => $request->get('postcode'),
 
-        $carers  = Carer::all();
-            return  redirect()->back()->with('info', "Carer updated");
-
+    ]);
+    $surgeries  = Surgery::all();
+    //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
+        return  redirect()->back()->with('info', "Surgery updated");
     }
 
     /**
@@ -110,12 +103,9 @@ class CarerController extends Controller
      */
     public function destroy($id)
     {
-        // carer deleted
-
-        $carer = Carer::find($id);
-        $carer->delete();
-        $carers  = Carer::all();
-        return  redirect()->back()->with('info', "Carer Deleted");
-
+        $surgery = Surgery::find($id);
+        $surgery->delete();
+        $surgeries  = Surgery::all();
+        return  redirect()->back()->with('info', "Surgery Deleted");
     }
 }

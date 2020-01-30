@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 
 class Patientcontroller extends Controller
+
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +19,7 @@ class Patientcontroller extends Controller
         $patients  = Patient::all();
 
         return view('patients.index')->with(['patients' => $patients]);
+
     }
 
     /**
@@ -42,7 +44,7 @@ class Patientcontroller extends Controller
         // dd($request);
         Patient::create([
             'fname' => $request->input('fname'),
-            'lname' => $request->input('fname'),
+            'lname' => $request->input('lname'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
             'postcode' => $request->input('postcode'),
@@ -53,6 +55,7 @@ class Patientcontroller extends Controller
         return view('patients.newPatient');
 
     }
+
     /**
      * Display the specified resource.
      *
@@ -87,7 +90,7 @@ class Patientcontroller extends Controller
     public function update(Request $request, $id)
 
  {
-        // Update Post
+        // Update Patient
 
         $patient = Patient::find($id);
         $patient->update([
@@ -125,6 +128,7 @@ class Patientcontroller extends Controller
         $patient = Patient::find($id);
         $patient->delete();
         $patients  = Patient::all();
-        return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
+        // return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
+        return  redirect()->back()->with('info', "Patient Deleted");
     }
 }
