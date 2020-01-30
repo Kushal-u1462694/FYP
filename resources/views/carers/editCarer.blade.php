@@ -5,7 +5,7 @@
 <div class = "row">
 <div class = "col-md-12">
 <h3> Edit Carers </h3>
-<form  method="post" action ="{{route('carer.edit',$carer->id)}}">
+<form  method="post" action ="{{route('carers.edit',$carer->id)}}">
 
 @csrf
 

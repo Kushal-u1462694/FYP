@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Medicine;
+use App\Doctor;
+use App\Patient;
 use Illuminate\Http\Request;
 
 
@@ -59,7 +61,12 @@ class MedicineController extends Controller
      */
     public function show($id)
     {
-        //
+        $doctors =  Doctor ::all();
+        $patients = Patient::all();
+        $medicines = Medicine::all();
+
+        return view('medicines.detailMedicine', compact('doctors', 'patients', 'medicines'));
+
     }
 
     /**
@@ -71,7 +78,7 @@ class MedicineController extends Controller
     public function edit($id)
     {
         $medicine = Medicine::find($id);
-        return view('medicines.editmedicine', compact ('medicine'));
+        return view('medicines.editMedicine', compact ('medicine'));
 
     }
     /**

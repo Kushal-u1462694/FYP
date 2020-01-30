@@ -4,7 +4,7 @@
 
 
 <h3 class="text-info text-center">Edit Doctors </h3>
-<form action="{{route('doctors.edit', $doctor->id)}}" method="post">
+<form  method="post" action ="{{route('doctors.edit',$doctor->id)}}">
 
     @csrf
 <div class="form-group">

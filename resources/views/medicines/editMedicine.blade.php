@@ -5,8 +5,7 @@
 
 
 <h3 class="text-info text-center">Edit Medicine</h3>
-<form action="{{route('medicine.edit,', $medicine->$id)}}" method="post">
-
+<form  method="post" action ="{{route('medicines.edit',$medicine->id)}}">
     @csrf
 <div class="form-group">
     <label for="">Name:</label>

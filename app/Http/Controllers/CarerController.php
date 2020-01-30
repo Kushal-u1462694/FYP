@@ -75,7 +75,7 @@ class CarerController extends Controller
         //
 
         $carer = Carer:: find($id);
-        return view('carer.editCarer', compact ('carer'));
+        return view('carers.editCarer', compact ('carer'));
 
     }
 

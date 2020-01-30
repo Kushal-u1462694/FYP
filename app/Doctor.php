@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Surgery;
+use\App\Management;
+use\App\Patient;
 
 
 class Doctor extends Model
@@ -13,5 +15,11 @@ class Doctor extends Model
 public function surgery() {
 
     return $this->belongsTo(Surgery::class);
+}
+
+public function patients() {
+
+    return $this->belongsToMany(Patient::class);
+
 }
 }

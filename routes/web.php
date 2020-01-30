@@ -40,7 +40,7 @@ Route::get('/doctors/all','DoctorController@index')->name('doctors.all');
 Route::get('/doctors/new','DoctorController@create')->name('doctors.new');
 Route::post('/doctors/new','DoctorController@store')->name('doctors.new');
 Route::get('/doctors/edit/{id}','DoctorController@edit')->name('doctor.edit');
-Route::post('/doctors/edit/{id}','DoctorController@update')->name('doctor.edit');
+Route::post('/doctors/edit/{id}','DoctorController@update')->name('doctors.edit');
 Route::get('/doctors/delete/{id}','DoctorController@destroy')->name('doctor.delete');
 
 // Surgery routes
@@ -56,6 +56,13 @@ Route::get('/medicines/all','MedicineController@index')->name('medicines.all');
 Route::get('/medicines/new','MedicineController@create')->name('medicines.new');
 Route::post('/medicines/new','MedicineController@store')->name('medicines.new');
 Route::get('/medicines/edit/{id}','MedicineController@edit')->name('medicine.edit');
-Route::post('/medicines/edit/{id}','MedicineController@update')->name('medicine.edit');
+Route::post('/medicines/edit/{id}','MedicineController@update')->name('medicines.edit');
 Route::get('/medicines/delete/{id}','MedicineController@destroy')->name('medicine.delete');
+Route::get('/medicines/show/{id}','MedicineController@show')->name('medicine.show');
+
+// Managements routes
+
+// Route::get('/managements/all','ManagementController@index')->name('patient.all');
+// Route::get('/managements/create','ManagementController@create')->name('patient.create');
+// Route::get('/managements/show/{patient}','ManagementController@show')->name('patient.show');
 

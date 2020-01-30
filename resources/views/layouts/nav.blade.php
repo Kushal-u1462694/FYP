@@ -11,12 +11,13 @@
             @auth
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('carers.all') }}">All Carers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('carers.new') }}">Add New Carers</a>
-                </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('carers.all') }}">All Carers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('carers.new') }}">Add New Carers</a>
+                        </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('patients.all') }}">All Patients</a>
