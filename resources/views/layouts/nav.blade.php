@@ -8,7 +8,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            @auth
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
@@ -17,8 +16,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('carers.new') }}">Add New Carers</a>
                         </li>
-
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('patients.all') }}">All Patients</a>
                 </li>
@@ -44,16 +41,16 @@
                     <a class="nav-link" href="{{ route('medicines.all') }}">All Medicines</a>
                 </li>
 
-
-
-
-@endauth
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('managements.create')}}">Add new Management</a>
+                </li>
             </ul>
+            @auth
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
+
                 @guest
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -78,11 +75,17 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
+
                             </form>
                         </div>
                     </li>
                 @endguest
             </ul>
+            @endauth
+
         </div>
+
     </div>
+
 </nav>
+

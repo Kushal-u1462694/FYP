@@ -45,7 +45,8 @@ class MedicineController extends Controller
         Medicine::create([
             'name' => $request->input('name'),
             'size' => $request->input('size'),
-            'dosage' => $request->input('instruction'),
+            'dosage' => $request->input('dosage'),
+            'instruction' => $request->input('instruction'),
             'state' => $request->input('state'),
         ]);
 

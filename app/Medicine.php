@@ -14,4 +14,12 @@ class Medicine extends Model
         return $this->hasMany(Medicine::class);
 
     }
+
+    public function patients() {
+
+        return $this->belongsToMany(Management::class)->withPivot('patient_id','doctor_id','schedule_id','reference');
+
+
+    }
+
 }

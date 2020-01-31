@@ -34,6 +34,9 @@ Route::post('/patients/new','Patientcontroller@store')->name('patients.new');
 Route::get('/patients/edit/{id}','Patientcontroller@edit')->name('patient.edit');
 Route::post('/patients/edit/{id}','Patientcontroller@update')->name('patient.edit');
 Route::get('/patients/delete/{id}','Patientcontroller@destroy')->name('patients.delete');
+Route::get('/patients/medicines/{id}','Patientcontroller@getMedicines')->name('patients.medicines');
+Route::get('/patients/managements/{id}','Patientcontroller@getManagements')->name('patients.managements');
+
 
 // Doctor routes
 Route::get('/doctors/all','DoctorController@index')->name('doctors.all');
@@ -60,9 +63,12 @@ Route::post('/medicines/edit/{id}','MedicineController@update')->name('medicines
 Route::get('/medicines/delete/{id}','MedicineController@destroy')->name('medicine.delete');
 Route::get('/medicines/show/{id}','MedicineController@show')->name('medicine.show');
 
+
 // Managements routes
+Route::get('/managements/create','ManagementController@create')->name('managements.create');
+Route::post('/managements/new','ManagementController@store')->name('managements.new');
+
 
 // Route::get('/managements/all','ManagementController@index')->name('patient.all');
 // Route::get('/managements/create','ManagementController@create')->name('patient.create');
 // Route::get('/managements/show/{patient}','ManagementController@show')->name('patient.show');
-

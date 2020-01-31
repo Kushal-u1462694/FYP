@@ -13,17 +13,19 @@ class CreateManagmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('managments', function (Blueprint $table) {
+        Schema::create('managements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('patient_id')->unsigned();
             $table->integer('doctor_id')->unsigned();
             $table->integer('medicine_id')->unsigned();
             $table->integer('schedule_id')->unsigned();
+            $table->integer('carer_id')->unsigned();
             $table->string('reference')->nullable();
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->foreign('medicine_id')->references('id')->on('medicines')->onDelete('cascade');
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
+            $table->foreign('carer_id')->references('id')->on('carers')->onDelete('cascade');
             $table->timestamps();
         });
     }

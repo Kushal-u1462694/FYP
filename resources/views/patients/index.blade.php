@@ -17,6 +17,12 @@
 <td><a href = "{{route('patient.edit',$patient->id)}}" class = "btn btn-warning">Edit</a></td>
 <td>  <a class="btn btn-outline-danger" href="{{ route('patients.delete', $patient->id ) }}">Delete Patient</a>
 </td>
+<td>  <a class="btn btn-outline-danger" href="{{ route('patients.medicines', $patient->id ) }}">Show Medicine</a>
+
+</td>
+<td>  <a class="btn btn-outline-danger" href="{{ route('patients.managements', $patient->id ) }}">Show Management</a>
+
+</td>
 
 </tr>
 @endforeach
