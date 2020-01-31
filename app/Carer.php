@@ -15,4 +15,24 @@ class Carer extends Model
         return $this->hasMany(Patient::class);
 
     }
+
+    public function medicines() {
+
+        return $this->belongsToMany(Medicine::class,'managements', 'carer_id', 'medicine_id')->withPivot('medicine_id','doctor_id','schedule_id','reference');
+
+    }
+
+
+
+    public function schedules() {
+
+        return $this->belongsToMany(Schedule::class,'managements',  'carer_id','schedule_id')->withPivot('doctor_id','medicine_id','reference');
+
+    }
+
+
+    public function managements() {
+
+        return $this->hasMany(Management::class);
+    }
 }

@@ -131,4 +131,19 @@ class Patientcontroller extends Controller
         // return view('patients.index')->with(['success'=>'Data Updated','patients'=>$patients]);
         return  redirect()->back()->with('info', "Patient Deleted");
     }
+
+    public function getMedicines($id) {
+
+       $patient = Patient::find($id);
+        $medicines = $patient->medicines;
+        return view('patients.medicines', compact('patient', 'medicines'));
+    }
+    public function getManagements($id) {
+
+        $patient = Patient::find($id);
+         $managements = $patient->managements;
+         return view('patients.managements', compact('patient', 'managements'));
+     }
+
+
 }

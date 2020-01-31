@@ -17,19 +17,42 @@ public function carer() {
     return $this->belongsTo(Carer::class);
 }
 
+// public function doctors() {
+
+
+//     return $this->belongsToMany(Doctor::class);
+
+// }
+
+// public function managements()
+// {
+
+//     return $this->belongsToMany( 'App\Patient', 'managements', 'patient_id', 'doctor_id', 'medicine_id', 'schedule_id', 'reference' );
+// }
+
+public function medicines() {
+
+    return $this->belongsToMany(Medicine::class,'managements', 'patient_id', 'medicine_id')->withPivot('medicine_id','doctor_id','schedule_id','reference');
+
+}
+
 public function doctors() {
 
-
-    return $this->belongsToMany(Doctor::class);
+    return $this->belongsToMany(Doctor::class,'managements', 'patient_id', 'doctor_id')->withPivot('schedule_id','doctor_id','reference');
 
 }
 
-public function managements()
-{
+public function schedules() {
 
-    return $this->belongsToMany( 'App\Patient', 'managements', 'patient_id', 'doctor_id', 'medicine_id', 'schedule_id', 'reference' );
+    return $this->belongsToMany(Schedule::class,'managements',  'patient_id','schedule_id')->withPivot('doctor_id','medicine_id','reference');
+
 }
 
+
+public function managements() {
+
+    return $this->hasMany(Management::class);
+}
 
 }
 
