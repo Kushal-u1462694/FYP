@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carer;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class CarerController extends Controller
@@ -116,6 +117,15 @@ class CarerController extends Controller
         $carer->delete();
         $carers  = Carer::all();
         return  redirect()->back()->with('info', "Carer Deleted");
+
+    }
+
+        public function getPatients($id) {
+        $carer = Carer::find($id);
+        $patients = $carer->patients ;
+        //dd($patients);
+
+        return view('carers.patients', compact('carer', 'patients'));
 
     }
 }
