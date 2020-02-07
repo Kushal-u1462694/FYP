@@ -10,13 +10,20 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/user', 'RolesController@useroles')->name('user');
+// Route::get('/user', 'RolesController@adminroles')->name('admin')
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 //carers routes
 
@@ -26,6 +33,8 @@ Route::post('/carers/new','CarerController@store')->name('carers.new');
 Route::get('/carers/edit/{id}','CarerController@edit')->name('carers.edit');
 Route::post('/carers/edit/{id}','CarerController@update')->name('carers.edit');
 Route::get('/carers/delete/{id}','CarerController@destroy')->name('carers.delete');
+Route::get('/carers/show/patients/{id}','CarerController@getPatients')->name('carers.patients');
+
 //patients routes
 
 Route::get('/patients/all','Patientcontroller@index')->name('patients.all');
@@ -65,9 +74,13 @@ Route::get('/medicines/show/{id}','MedicineController@show')->name('medicine.sho
 
 
 // Managements routes
+Route::get('/managements/all/','ManagementController@index')->name('managements.all');
 Route::get('/managements/create','ManagementController@create')->name('managements.create');
 Route::post('/managements/new','ManagementController@store')->name('managements.new');
-
+Route::get('/managements/edit/{id}','ManagementController@edit')->name('managements.edit');
+Route::post('/managements/edit/{id}','ManagementController@update')->name('managements.edit');
+Route::get('/managements/delete/{id}','ManagementController@destroy')->name('managements.delete');
+Route::get('/managements/show/{id}','ManagementController@show')->name('management.show');
 
 // Route::get('/managements/all','ManagementController@index')->name('patient.all');
 // Route::get('/managements/create','ManagementController@create')->name('patient.create');

@@ -16,13 +16,12 @@
     <td>{{ $carer->lname}}</td>
 <td><a href = "{{route('carers.edit',$carer->id)}}" class = "btn btn-warning">Edit</a></td>
 <td>  <a class="btn btn-outline-danger" href="{{ route('carers.delete', $carer->id ) }}">Delete Carer</a>
+    <td>  <a class="btn btn-outline-success" href="{{ route('carers.patients', $carer->id ) }}">Show Patients</a>
 </td>
 
 </tr>
 @endforeach
 </table>
 @endsection
-
-
 
 {{-- <p> {{ $carer->fname}}  {{ $carer->lname}}</p> --}}

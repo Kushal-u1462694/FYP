@@ -10,7 +10,7 @@ use\App\Doctor;
 
 class Patient extends Model
 {
-    protected $fillable=['fname', 'lname','email','address','postcode','dob','carer_id'];
+    protected $fillable=['fname' , 'lname','email','address','postcode','dob','carer_id'];
 
 public function carer() {
 
@@ -44,7 +44,7 @@ public function doctors() {
 
 public function schedules() {
 
-    return $this->belongsToMany(Schedule::class,'managements',  'patient_id','schedule_id')->withPivot('doctor_id','medicine_id','reference');
+    return $this->belongsToMany(Schedule::class,'managements', 'patient_id','schedule_id')->withPivot('doctor_id','medicine_id','reference');
 
 }
 

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Management;
@@ -19,7 +18,9 @@ class ManagementController extends Controller
      */
     public function index()
     {
-        //
+       $managements = Management::all();
+    //    return view('managements.index')->with(['managements'=>$managements]);
+       return view('managements.index')->with(['managements' => $managements]);
     }
 
     /**
@@ -58,7 +59,7 @@ class ManagementController extends Controller
             'reference' => $request->input('reference'),
         ]);
        // return view('managements.newManagement', compact('patients', 'doctors', 'medicines', 'managements', 'schedules'))->with('info', "You have added new management ");
-return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
+       return  redirect()->back()->with('info', "Prescription Added ")->with([
     'patients' => $patients,
     'doctors' =>$doctors,
     'medicines'=>$medicines,
@@ -67,7 +68,6 @@ return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
 
 ]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -76,7 +76,9 @@ return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
      */
     public function show($id)
     {
-        //
+        $management = Management::find($id);
+
+        return view('managements.managementDetails' , compact('management')) ;
     }
 
     /**
@@ -87,7 +89,12 @@ return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
      */
     public function edit($id)
     {
-        //
+        $patients = Patient::find($id);
+        $doctors = Doctor::find($id);
+        $medicines = Medicine::find($id);
+        $managements = Management::find($id);
+        $schedules = Schedule::find($id);
+        return view('managements.editManagement', compact ('patients', 'doctors', 'medicines', 'managements', 'schedules'));
     }
 
     /**
@@ -99,7 +106,25 @@ return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
      */
     public function update(Request $request, $id)
     {
-        //
+        $patients = Patient::find($id);
+        $doctors = Doctor::find($id);
+        $medicines = Medicine::find($id);
+        $managements = Management::find($id);
+        $schedules = Schedule::find($id);
+        $managements->update([
+        "patient_id" => $request->get('patient_id'),
+       "doctor_id" => $request->get('doctor_id'),
+       "medicine_id" => $request->get('medicine_id'),
+       "schedule_id" => $request->get('schedule_id'),
+       "reference" => $request->get('reference'),
+    ]);
+    $patients = Patient::all();
+    $doctors = Doctor::all();
+    $medicines = Medicine::all();
+    $managements = Management::all();
+    $schedules = Schedule::all();
+    //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
+        return  redirect()->back()->with('info', "Prescription updated");
     }
 
     /**
@@ -110,6 +135,23 @@ return redirect()->back()->with('info' , " YOU ADDED A NEW MANAGMENT")->with([
      */
     public function destroy($id)
     {
-        //
+        $patients = Patient::find($id);
+        $doctors = Doctor::find($id);
+        $medicines = Medicine::find($id);
+        $managements = Management::find($id);
+        $schedules = Schedule::find($id);
+        $patients->delete();
+        $doctors->delete();
+        $medicines->delete();
+        $managements->delete();
+        $schedules->delete();
+
+        $patients = Patient::all();
+        $doctors = Doctor::all();
+        $medicines = Medicine::all();
+        $managements = Management::all();
+        $schedules = Schedule::all();
+
+        return  redirect()->back()->with('info', "Management Deleted");
     }
 }

@@ -11,10 +11,15 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
+
+
                         </div>
                     @endif
+                    {{-- {{dd(Auth::user()->roles)}} --}}
+ @foreach (Auth::user()->roles as $role)
+   <p>   You are logged in as {{$role->name}}! </p>
+ @endforeach
 
-                    You are logged in!
                 </div>
             </div>
         </div>

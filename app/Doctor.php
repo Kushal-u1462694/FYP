@@ -36,10 +36,6 @@ public function medicines() {
 
 }
 
-
-
-
-
 public function managements() {
 
     return $this->hasMany(Management::class);
