@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 
 
@@ -21,7 +20,7 @@
 
 <div class="form-group">
     <label for="">Postcode:</label>
-    <input type="postcode" class="form-control" name="postcode" id="postcode">
+    <input type="text" class="form-control" name="postcode" id="postcode">
 </div>
 <div>
 <button type="submit" class="btn btn-info float-right">Add New Surgery </button>

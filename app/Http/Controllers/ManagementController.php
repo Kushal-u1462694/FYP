@@ -87,14 +87,26 @@ class ManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $patients = Patient::find($id);
-        $doctors = Doctor::find($id);
-        $medicines = Medicine::find($id);
-        $managements = Management::find($id);
-        $schedules = Schedule::find($id);
-        return view('managements.editManagement', compact ('patients', 'doctors', 'medicines', 'managements', 'schedules'));
+    // public function edit($id)
+    // {
+    //     $patients = Patient::find($id);
+    //     $doctors = Doctor::find($id);
+    //     $medicines = Medicine::find($id);
+    //     $managements = Management::find($id);
+    //     $schedules = Schedule::find($id);
+    //     return view('managements.editManagement', compact ('patients', 'doctors', 'medicines', 'managements', 'schedules'));
+    // }
+    public function edit($id){
+$management = Management::find($id);
+$doctor= $management->doctor;
+$patient= $management->patient;
+$schedule= $management->schedule;
+$medicines = $management->medicine;
+$medicine = Medicine::all();
+// dd($management);
+return view('managements.editManagement', compact ('patient', 'doctor', 'medicine', 'management', 'schedule', 'medicines'));
+
+
     }
 
     /**

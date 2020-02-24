@@ -2,9 +2,16 @@
 
 @section('content')
 
-<h3> All Surgeries</h3>
-<table>
+    <div class = "container">
+        <div class = "jumbotron">
+        <table class = "table table-stripped table-bordered table-hover">
+            <thead class = "thead">
+                <tr class = "warning">
+                </tr>
+            </thead>
 <tr>
+    <h3> All Surgeries</h3>
+
 <th>Name:</th>
 <th>Address:</th>
 <th>Edit</th>
@@ -21,4 +28,6 @@
 </tr>
 @endforeach
 </table>
+        </div>
+    </div>
 @endsection

@@ -2,151 +2,98 @@
 @section('content')
 
 <h3> Create New Prescription</h3>
-<div class="alert">
 
-{{-- <a href="{{route('managements.all')}}"  class="btn btn-info float-right"> View All Mangments</a> --}}
-</div>
-<form action="{{route('managements.edit', $managements->id)}}" method="post">
+<form action="{{route('managements.edit', $management->id)}}" method="post">
     @csrf
-<div class="form-group">
 
-<select name="patient_id" id="" class="form-control" value = "{{$patients->id}}">
-<option value="{{$patients->id}}"> Select Patient </option>
-            @foreach($patients as $patient)
-<option value="1"> Patient 1</option>
-<option value="2"> Patient 2 </option>
-            @endforeach
-    </select>
-</div>
-<div class="form-group">
+    <div class="form-group">
+        <label for="patient_name"> Patient Name</label>
+        <input type="text" value="{{$patient->fname}}  {{$patient->lname}}" name="patient_name"  id="patient_name"disabled>
+        </div>
 
-    <label for="dob">Patient Date of Birth:</label>
-<input type="date" class="form-control"  name= "dob" id="" value = "{{$patients->dob}}">
-</div>
+    <div class="form-group">
+    <label for="patient_dob"> Patient Date of Birth</label>
+    <input type="text" value="{{$patient->dob}}" name="dob"  id="dob"disabled>
+    </div>
 
-<div class="form-group">
-<select name="address" id="" class="form-control" value = "{{$patients->address}}">
-            <option value=""> Select Patient Address</option>
-            @foreach ($patients as $patient)
-                <option value="1">  adreess1 </option>
-                <option value="2">  adreess2 </option>
+        <div class="form-group">
+            <label for="patient_address"> Patient Address</label>
+            <input type="text" value="{{$patient->address}}" name="address"  id="address"disabled>
+            </div>
 
-            @endforeach
-    </select>
+                    <div class="form-group">
+                        <label for="doctor_name"> Doctor Name:</label>
+                    <input type="text" value="{{$doctor->fname}} {{$doctor->lname}}" name="doctor_name"  id="doctor_name"disabled>
+                        </div>
 
-<div class="form-group">
-<select name="doctor_id" id="" class="form-control" value = "{{$doctors->id}} {{$doctors->fname}}">
-            <option value=""> Select Doctor</option>
-            @foreach ($doctors as $doctor)
-                <option value="1"> doctor1 </option>
-                <option value="2">  doctor2 </option>
+                        <div class="form-group">
+                            <label for="reference numer">Reference Number:</label>
+                        <input type="text" value= "{{$management->reference}}"name="reference" id="reference" disabled>
+                        </div>
 
-            @endforeach
-    </select>
-</div>
+                        <div class="form-group">
+                            <label for="medicine name">Medicine Name:</label>
+                        <select name="medicine_name" value = "{{$management->id}}" id="medicine_name" class="form-control">
+                                    <option value=""> Select Medicine</option>
+                                    @foreach($medicine as $medicines)
+                        <option value="{{$medicines->id}}">  {{$medicines->name}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
 
-<div class="form-group">
-    <label for="">Reference Number:</label>
-<input type="text" class="form-control" name="reference" id="" value= "{{$managements->reference}}">
-</div>
+                        <div class="form-group">
+                            <label for="medicine Size">Medicine Size:</label>
+                        <select name="medicine_size" value = "{{$management->id}}" id="medicine_size" class="form-control">
+                                    <option value=""> Select Medicine Size</option>
+                                    @foreach($medicine as $medicines)
+                        <option value="{{$medicines->id}}">  {{$medicines->size}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Medicine Dosage">Medicine Dosage:</label>
+                        <select name="medicine_dosage" value = "{{$management->id}}" id="medicine_dosage" class="form-control">
+                                    <option value=""> Select Medicine Dosage</option>
+                                    @foreach($medicine as $medicines)
+                        <option value="{{$medicines->id}}">  {{$medicines->dosage}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Medicine Dosage">Medicine State:</label>
+                        <select name="medicine_dosage" value = "{{$management->id}}" id="medicine_state" class="form-control">
+                                    <option value=""> Select Medicine State</option>
+                                    @foreach($medicine as $medicines)
+                        <option value="{{$medicines->id}}">  {{$medicines->state}}</option>
+                                    @endforeach
+                            </select>
+                        </div>
 
-<div class="form-group">
+                        <div class="form-group">
+                            <label for="medicine Instruction">Medicine Instruction:</label>
+                            <textarea>
+                        {{$medicines->instruction}}
+                            </textarea>
+                        </div>
 
-    <label for="medicines">Medicine Name:</label>
-<input type="text" class="form-control"  name = "medicine_id" id="" value = "{{$medicines->id}} {{$medicines->name}}">
-</div>
-
-{{-- <div class="form-group">
-<select name="medicine_id" id="" class="form-control" value = "{{$medicines->id}} {{$medicines->name}}">
-            <option value=""> Select Medicine</option>
-            @foreach($medicines as $medicine)
-                <option value="1"> medicine1 </option>
-                <option value="2"> medicine2</option>
-            @endforeach
-    </select>
-</div> --}}
-
-<div class="form-group">
-
-    <label for="medicines">Medicine Size:</label>
-<input type="text" class="form-control"  name = "size" id="" value = "{{$medicines->size}}">
-</div>
-
-
-{{-- <select name="size" id="" class="form-control" value = "{{$medicines->size}}">
-    <option value=""> Select Medicine Size</option>
-    @foreach($medicines as $medicine)
-        <option value="1">  12 </option>
-        <option value="2">  2 </option>
-    @endforeach
-</select>
-</div> --}}
-<div class="form-group">
-
-    <label for="dosages">Medicine Dosage:</label>
-<input type="text" class="form-control"  name = "dosage" id="" value = "{{$medicines->dosage}}">
-</div>
-
-
-
-{{-- <div class="form-group">
-<select name="dosage" id="" class="form-control" value="{{$medicines->dosage}}">
-        <label for="">Medicine Dosage:</label>
-            <option value=""> Select Medicine Dosage</option>
-            @foreach ($medicines as $medicine)
-                <option value="1">  12 </option>
-                <option value="2">  11 </option>
-
-            @endforeach
-    </select>
-</div> --}}
-
-<div class="form-group">
-
-    <label for="state">Medicine State:</label>
-<input type="text" class="form-control"  name = "state" id="" value = "{{$medicines->state}}">
-</div>
-
-
-{{-- <div class="form-group">
-<select name="state" id="" class="form-control" value="{{$medicines->state}}">
-        <label for="">Medicine State:</label>
-            <option value=""> Select Medicine State</option>
-            @foreach ($medicines as $medicine)
-                <option value="1">Solid</option>
-                <option value="2">Liquid</option>
-            @endforeach
-    </select>
-</div> --}}
-{{--
-<div class="form-group">
-<select name="instruction" id="" class="form-control" value = "{{$medicines->instruction}}">
-        <label for="">Medicine Instruction:</label>
-            <option value=""> Select Medicine Instruction</option>
-            @foreach ($medicines as $medicine)
-                <option value="1">  about medicine 1</option>
-                <option value="2">  about medicine 2 </option>
-
-            @endforeach
-    </select>
-</div> --}}
-<div class="form-group">
-
-    <label for="instruction">Medicine Instruction:</label>
-<input type="text" class="form-control"  name = "instruction" id="" value = "{{$medicines->instruction}}">
-</div>
-
-<div class="form-group">
-<select name="schedule_id" id="" class="form-control" value = "{{$schedules->id}} {{$schedules->details}}">
-            <option value="">  Select Schedule </option>
-            @foreach ($schedules as $schedule)
-                <option value="1"> about schedule 1</option>
-                <option value="2"> about schedule 2</option>
-
-            @endforeach
+                        <div class="form-group">
+                            <label for="Schedule Date">Prescription Prescribed Date and Time To:</label>
+                        <input type="datetime-local" value= "{{$schedule->to}}"name="reference_to" id="reference_to">
+                        </div>
+                        <div class="form-group">
+                            <label for="Schedule Date">Prescription Prescribed Date and Time From:</label>
+                        <input type="datetime-local" value= "{{$schedule->from}}"name="reference_from" id="reference_from">
+                        </div>
+                            <div class="form-group">
+                            <label for="schedule_details">Notes:</label>
+                            <textarea>
+                                {{$schedule->details}}
+                                    </textarea>
         </select>
 </div>
-<button type="submit" class="btn btn-info float-right">Edit Medicine Prescription </button>
-</div>
+
+<div>
+    <button type="submit" class="btn btn-info float-center" value = "Edit" >Update Prescription </button>
+    </div>
 </form>
 @endsection

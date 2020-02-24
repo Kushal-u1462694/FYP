@@ -17,6 +17,8 @@ class CreateSchedulesTable extends Migration
             $table->dateTime('to')->nullable();
             $table->dateTime('from')->nullable();
             $table->text('details')->nullable();
+            $table->text('medicine_name')->nullable();
+            $table->text('patient_name')->nullable();
             $table->timestamps();
         });
     }

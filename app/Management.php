@@ -8,8 +8,6 @@ use App\Patient;
 use App\Schedule;
 use App\Medicine;
 
-
-
 class Management extends Model
 {
     protected $fillable=['patient_id', 'medicine_id','doctor_id','schedule_id','reference'];

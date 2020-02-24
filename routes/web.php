@@ -26,7 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //carers routes
-
 Route::get('/carers/all', 'CarerController@index')->name('carers.all');
 Route::get('/carers/new','CarerController@create')->name('carers.new');
 Route::post('/carers/new','CarerController@store')->name('carers.new');
@@ -34,7 +33,7 @@ Route::get('/carers/edit/{id}','CarerController@edit')->name('carers.edit');
 Route::post('/carers/edit/{id}','CarerController@update')->name('carers.edit');
 Route::get('/carers/delete/{id}','CarerController@destroy')->name('carers.delete');
 Route::get('/carers/show/patients/{id}','CarerController@getPatients')->name('carers.patients');
-
+Route::get('/carers/show/managements/{id}','CarerController@getPrescriptions')->name('carers.managements');
 //patients routes
 
 Route::get('/patients/all','Patientcontroller@index')->name('patients.all');
@@ -43,7 +42,7 @@ Route::post('/patients/new','Patientcontroller@store')->name('patients.new');
 Route::get('/patients/edit/{id}','Patientcontroller@edit')->name('patient.edit');
 Route::post('/patients/edit/{id}','Patientcontroller@update')->name('patient.edit');
 Route::get('/patients/delete/{id}','Patientcontroller@destroy')->name('patients.delete');
-Route::get('/patients/medicines/{id}','Patientcontroller@getMedicines')->name('patients.medicines');
+Route::get('/patients/medicines/{id}','Patientcontroller@getDetails')->name('patients.details');
 Route::get('/patients/managements/{id}','Patientcontroller@getManagements')->name('patients.managements');
 
 
@@ -56,12 +55,12 @@ Route::post('/doctors/edit/{id}','DoctorController@update')->name('doctors.edit'
 Route::get('/doctors/delete/{id}','DoctorController@destroy')->name('doctor.delete');
 
 // Surgery routes
-Route::get('/surgeries/all','SurgeryController@index')->name('surgeries.all');
-Route::get('/surgeries/new','SurgeryController@create')->name('surgeries.new');
-Route::post('/surgeries/new','SurgeryController@store')->name('surgeries.new');
-Route::get('/surgeries/edit/{id}','SurgeryController@edit')->name('surgeries.edit');
-Route::post('/surgeries/edit/{id}','SurgeryController@update')->name('surgeries.edit');
-Route::get('/surgeries/delete/{id}','SurgeryController@destroy')->name('surgeries.delete');
+Route::get('/surgeries/all','surgeryController@index')->name('surgeries.all');
+Route::get('/surgeries/new','surgeryController@create')->name('surgeries.new');
+Route::post('/surgeries/new','surgeryController@store')->name('surgeries.new');
+Route::get('/surgeries/edit/{id}','surgeryController@edit')->name('surgeries.edit');
+Route::post('/surgeries/edit/{id}','surgeryController@update')->name('surgeries.edit');
+Route::get('/surgeries/delete/{id}','surgeryController@destroy')->name('surgeries.delete');
 
 // Medicine routes
 Route::get('/medicines/all','MedicineController@index')->name('medicines.all');
@@ -85,3 +84,18 @@ Route::get('/managements/show/{id}','ManagementController@show')->name('manageme
 // Route::get('/managements/all','ManagementController@index')->name('patient.all');
 // Route::get('/managements/create','ManagementController@create')->name('patient.create');
 // Route::get('/managements/show/{patient}','ManagementController@show')->name('patient.show');
+
+//fullcalender
+
+Route::resource('/calendar', 'EventController');
+Route::get('/calendar/templates/addCalendar', 'EventController@display');
+Route::post('/calendar', 'EventController@store');
+Route::get('/calendar/templates/display', 'EventController@show');
+Route::get('/calendartemplates/delete', 'EventController@show');
+// Route::get('/calendar/templates/editForm/{id}', 'EventController@edit');
+// Route::post('/calendar/templates/editForm/{id}' , 'EventController@update');
+// Route::post('/calendar/add', 'EventController@addEvent')->name('calendar.add');
+// Route::get('/calendar/index','EventController@index')->name('calendar.index');
+// Route::post('/calendar/create','EventController@create')->name('calendar.create');
+// Route::post('/calendar/update','EventController@update')->name('calendar.update');
+// Route::post('/calendar/delete','EventController@destroy')->name('calendar.destroy');

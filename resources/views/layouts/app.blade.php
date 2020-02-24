@@ -11,7 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel = "stylesheet" href = "https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -20,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+ @yield('scripts')
     <div id="app">
 
 
@@ -27,11 +29,23 @@
 <div class="container">
     @include('layouts.messages')
     <main class="py-4">
+
         @yield('content')
 
     </main>
 
 </div>
+
+<!-- Scripts -->
+
+
+
+         <!-- App scripts -->
+         {{-- @stack('scripts')
+         @yield('scripts')
+ --}}
+
+
 
     </div>
 </body>

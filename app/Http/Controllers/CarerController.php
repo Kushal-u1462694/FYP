@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
+use Illuminate\Support\Str;
+
 use App\Carer;
+use App\Management;
 use App\Patient;
+use App\Medicine;
+use App\Doctor;
+use App\Schedule;
+
 use Illuminate\Http\Request;
 
 class CarerController extends Controller
@@ -31,6 +39,7 @@ class CarerController extends Controller
     public function create()
     {
         return view('carers.newCarer');
+
     }
 
     /**
@@ -62,7 +71,7 @@ class CarerController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -76,6 +85,7 @@ class CarerController extends Controller
         //
 
         $carer = Carer:: find($id);
+
         return view('carers.editCarer', compact ('carer'));
 
     }
@@ -122,10 +132,41 @@ class CarerController extends Controller
 
         public function getPatients($id) {
         $carer = Carer::find($id);
-        $patients = $carer->patients ;
-        //dd($patients);
+        // $management = Management::find($id);
+        // $patients = $management->patients;
+        $patients = $carer->patients;
+        // dd($management);
+
+        // $patients = $management->patients;
+
+
+        // $patients = $management->patients;
 
         return view('carers.patients', compact('carer', 'patients'));
 
     }
+
+    public function getPrescriptions($id) {
+        $patient = Patient::find($id);
+        $management = Management::all();
+        $medicine = Medicine::find($id);
+        $management = $patient->patients;
+        // $patient->$medicine::find($id);
+            // dd($management);
+        return view('carers.managements', compact('management', '$patients'));
+        // return view('carers.managements')->with(['management' => $management] , compact('management' , 'patients'));
+
+    }
+
+    // public function search(Request $request)
+    // {
+    //       $search = $request->get('term');
+
+    //       $result = Carer::where('fname', 'LIKE', '%'. $search. '%')->get();
+
+    //       return response()->json($result);
+
+    // }
+
+
 }

@@ -1,9 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-
 <h3> All Doctors</h3>
-<table>
+<div class = "container">
+    <div class = "jumbotron">
+    <table class = "table table-stripped table-bordered table-hover">
+        <thead class = "thead">
+            <tr class = "warning">
+            </tr>
+        </thead>
+
 <tr>
 <th>First Name:</th>
 <th>Last Name:</th>
@@ -20,4 +26,6 @@
 </tr>
 @endforeach
 </table>
+</div>
+</div>
 @endsection

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Carer;
 use App\Patient;
+use App\Surgery;
+use App\Doctor;
+use App\Management;
+
 use Illuminate\Http\Request;
 
 
@@ -29,7 +34,9 @@ class Patientcontroller extends Controller
      */
     public function create()
     {
-        return view('patients.newPatient');
+        $carer = Carer::all();
+        $patient = Patient::all();
+        return view('patients.newPatient',compact('patient','carer'));
     }
 
     /**
@@ -40,7 +47,8 @@ class Patientcontroller extends Controller
      */
     public function store(Request $request)
     {
-
+        $carer = Carer::all();
+        $patient = Patient::all();
         // dd($request);
         Patient::create([
             'fname' => $request->input('fname'),
@@ -52,7 +60,7 @@ class Patientcontroller extends Controller
             'carer_id' => $request->input('carer_id'),
         ]);
 
-        return view('patients.newPatient');
+        return view('patients.newPatient', compact('patient','carer'));
 
     }
 
@@ -132,17 +140,20 @@ class Patientcontroller extends Controller
         return  redirect()->back()->with('info', "Patient Deleted");
     }
 
-    public function getMedicines($id) {
+    public function getDetails($id) {
 
        $patient = Patient::find($id);
-        $medicines = $patient->medicines;
-        return view('patients.medicines', compact('patient', 'medicines'));
+        // dd($patient);
+       return view('patients.details', compact('patient'));
     }
     public function getManagements($id) {
 
         $patient = Patient::find($id);
-         $managements = $patient->managements;
-         return view('patients.managements', compact('patient', 'managements'));
+        $doctor = Doctor::find($id);
+        $management = Management::find($id);
+        //  $managements = $patient->managements;
+        // $managements = $patient->doctors;
+         return view('patients.managements', compact('patient',  'doctor', 'management'));
      }
 
 

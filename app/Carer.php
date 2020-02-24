@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Patient;
+use App\Management;
+use App\Medicine;
 
 class Carer extends Model
 {

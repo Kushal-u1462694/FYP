@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Surgery;
 use Illuminate\Http\Request;
+use App\Surgery;
+use App\Doctor;
 
-
-class SurgeryController extends Controller
+class surgeryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,6 @@ class SurgeryController extends Controller
     public function index()
     {
         $surgeries  = Surgery::all();
-
         return view('surgeries.index')->with(['surgeries' => $surgeries]);
     }
 
@@ -27,7 +26,9 @@ class SurgeryController extends Controller
      */
     public function create()
     {
-        return view('surgeries.newSurgery');
+        $surgeries  = Surgery::all();
+
+        return view('surgeries.newSurgery')->with(['surgeries' => $surgeries]);
     }
 
     /**
@@ -38,18 +39,15 @@ class SurgeryController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request);
-        Surgery::create([
+           Surgery::create([
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'postcode' => $request->input('postcode'),
         ]);
-
         // return view('doctors.newDoctor');
         return  redirect()->back()->with('info', "Surgery Succesfully Added");
-
     }
+
     /**
      * Display the specified resource.
      *
@@ -73,6 +71,7 @@ class SurgeryController extends Controller
         return view('surgeries.editSurgery', compact ('surgery'));
 
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -81,18 +80,17 @@ class SurgeryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+    {
+        $surgery = Surgery::find($id);
+        $surgery->update([
+            "name" => $request->get('name'),
+           "address" => $request->get('address'),
+           "postcode" => $request->get('postcode'),
 
- {
-    $surgery = Surgery::find($id);
-    $surgery->update([
-        "name" => $request->get('name'),
-       "address" => $request->get('address'),
-       "postcode" => $request->get('postcode'),
-
-    ]);
-    $surgeries  = Surgery::all();
-    //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
-        return  redirect()->back()->with('info', "Surgery updated");
+        ]);
+        $surgeries  = Surgery::all();
+        //     return redirect('patients/edit/6')->with(['patients'=>$patients])->with('info', 'Data Updated');
+            return  redirect()->back()->with('info', "Surgery updated");
     }
 
     /**

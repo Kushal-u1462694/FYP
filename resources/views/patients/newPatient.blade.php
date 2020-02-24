@@ -41,13 +41,15 @@
 </div>
 
 <div class="form-group">
-    <label for=""> Select Carer</label>
-    <select name="carer_id" id="" class="form-control">
-        <option value="1">Carer1</option>
-        <option value="2">Carer2</option>
+    <label for="Carer Name ">Carer Name:</label>
+<select name="id"  id="" class="form-control">
+            <option value=""> Select Carers</option>
+            @foreach($carer as $carers)
+<option value="{{$carers->id}}">  {{$carers->fname}}</option>
+            @endforeach
     </select>
-
 </div>
+
 <div>
 <button type="submit" class="btn btn-info float-right">Add New Patient </button>
 </div>

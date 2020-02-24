@@ -7,19 +7,43 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
-
-
-
-
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
+
+@auth
+@if(Auth::user()->hasRole('Carer'))
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('carers.all') }}">All Carers</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('patients.new') }}">Add New Patients</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('medicines.new') }}">Add New Medicines</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('medicines.all') }}">All Medicines</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('managements.create')}}">Add new Management</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('managements.all')}}">View All Management</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('calendar.index')}}">Calendar</a>
+</li>
+
+@endif
+@endauth
+
 @auth
 
                     @if(Auth::user()->hasRole('Admin'))
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('carers.all') }}">All Carers</a>
                     </li>

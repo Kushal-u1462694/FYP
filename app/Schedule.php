@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
-    protected $fillable=['to', 'from','details'];
+    protected $fillable=['to', 'from', 'details'];
 
  public function management()
  {
